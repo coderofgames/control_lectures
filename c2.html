@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+    <head>   
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!--<?php /*$arr=explode("\\",realpath(dirname(__FILE__))); echo $arr[count($arr)-1];*/ ?>-->
+       
+        <script src="public/js/jquery-1.11.0.min.js"></script>
+
+
+<script src="public/js/math.min.js"></script>
+
+<script src="public/js/plugins.js"></script>
+<script src="public/js/d3.js"></script>
+        
+<link rel="stylesheet" href="public/css/w3.css">
+<link rel="stylesheet" href="public/css/font-awesome.min.css">
+<link rel="stylesheet" href="public/css/w3-theme-black.css">
+<script src="public/js/function-plot.js"></script>
+
+<link rel="stylesheet" href="public/css/default.css" >
+
+
+
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>  
+
+	<script type="text/javascript" src="public/js/custom.js"></script>
+	<?php
+		if (isset($this->js)) 
+		{
+			foreach ($this->js as $js)
+			{
+				echo '<script type="text/javascript" src="views/'.$js.'"></script>';
+			}
+		}
+	?>            
+    </head>
+    
+    <body>
+        
+ <nav class="w3-sidenav w3-white w3-card-2 w3-animate-left" style="display:none;z-index:2">
+  <a href="javascript:void(0)" 
+  onclick="w3_close()"
+  class="w3-closenav w3-xxxlarge w3-text-teal">Close &times;</a>
+  <a href="index">index 1</a>		
+  <a href="math">math 2</a>		
+  <a href="help/">help 3</a>		
+  <a href="contact">contact 4</a>		
+  <a href="login">login 5</a>		
+</nav>
+
+<!-- Topnav -->
+<div class="w3-topnav w3-center w3-theme w3-card-4 w3-top">
+  <a href="index">index 1</a>		
+  <a href="math">math 2</a>		
+  <a href="help/">help 3</a>		
+  <a href="contact">contact 4</a>	
+  <?php 
+            //require 'libs/Session.php';
+            Session::init();
+            $text = "";
+            $loggedIn = Session::get('loggedIn');
+            if( $loggedIn == false ){ ?>
+        
+  
+  
+    <a href="login">login</a>	
+        
+            <?php }else{ ?>
+            
+           <a href="login">login</a>	
+
+    <a href="login/logout">logout</a>	
+          
+        
+            <?php } ?>                
+  
+</div>
+
+<header class="w3-container w3-theme w3-padding" id="myHeader">
+  <i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-opennav"></i> 
+  <div class="w3-center">
+  <h5>A readable</h5>
+  <h1 class="w3-animate-bottom">SCIENCE NOTEBOOK</h1>
+  <h5>INSPIRED BY SCIENCE<br><br></h5>
+    <div class="w3-padding-32">
+      <a href="#id01" class="w3-btn w3-xxlarge w3-theme-dark" style="font-weight:900;"> MATHEMATICS, PHYSICS AND SYSTEMS  </a>
+    </div>
+  </div>
+</header>
+
+
+            
+
+            
+
+            
+        
+            <!--
+            -->
+        
+        <div class="w3-container" id="content">
+
+      <div>      <span id="description-sample"></span></div>
+      
+      </div> <!-- content -->
+}$$
+
+
+
+
+
+        
+<div id="myholder"></div>
+
+	}$$
+Notes from The Art of Control Engineering
+(Dutton, Thompson, Barraclough)
+
+
+
+        
+
+
+
+
+	<h2> block diagrams</h2>
+    Block diagrams provide pictorial representations of a system and its associated control structure. The application of block reduction techniques (block diagram algebra) can greatly
+    simplify a system representation. <br>
+    
+	tdansfer functions and block diagrams<br>
+    For a series RLC circuit, Kirchoffs voltage law gives :- <br>
+    
+    \( \displaystyle v(t)=R i(t) + \frac{1}{C}\int_0^t i(t) dt + L \frac{di(t)}{dt} \)
+    <br>
+    ignoring the initial conditions in the integral this transforms to ... <br>
+    \(\displaystyle V(s) = R I(s) + \frac{I(s)}{s C} + L s I(s)\)
+    <br>
+    amd tjos cam be rearranged to:-<br>
+    \(\displaystyle \frac{V(s)}{I(s)} = sL + R + \frac{1}{sC} = \frac{s^2 L C + s R C + 1 }{sC}\)
+    <br>
+    this should be written as output divided by input ...<br>
+    \(\displaystyle \frac{I(s)}{V(s)} = \frac{sC}{s^2 L C + s R C + 1 }\)  
+    <br>
+    A system model should predict the behavior of a system in repsonse to an input, however non-zero initial conditions can also cause a transient response. Stable systems show low 
+    amount of transient response over time. The system can also be represented as a block diagram...<br>
+ 
+<h3>Reducton Rules</h3>
+<table class="w3-table" style = "width:75%">
+<thead class="w3-red">
+<tr><td>Rule</td><td>Original Diagram</td><td>Equivalent Diagram</td><td>Equation</td>
+</tr></thead>
+<tr><td>1</td><td><img src = "public/images/reduce_1_1.jpeg" style = "width:75%"></img></td><td><img src = "public/images/reduce_1_2.jpeg" style = "width:75%"></img></td><td>\(y=G_1 G_2 u\)</td>
+</tr>
+<tr><td>2</td><td><img src = "public/images/reduce_2_1.jpeg" style = "width:75%"></img></td><td><img src = "public/images/reduce_2_2.jpeg" style = "width:75%"></img></td><td>\( y= (G_1 \pm G_2) u\)</td>
+</tr>
+<tr><td>3</td><td><img src = "public/images/reduce_3_1.jpeg" style = "width:75%"></img></td><td><img src = "public/images/reduce_3_2.jpeg" style = "width:75%"></img></td><td>\(y=G_1(u \pm G_2 y)\)</td>
+</tr>
+</table>
+    
+    <br>
+    <br>
+    <h3>Manipulation Rules</h3>
+    
+<table class="w3-table" >
+<thead class="w3-red">
+<tr><td>Manipulation</td><td>Original Diagram</td><td>Equivalent Diagram</td><td>Equation</td>
+</tr></thead>
+<tr><td>1</td><td><img src = "public/images/system_1_1.jpeg" style = "width:75%"></img></td><td><img src = "public/images/system_1_2.jpeg" style = "width:75%"></img></td><td>\(Y(s)=G_1(s) U_1(s)-U_2(s)\)</td>
+</tr>
+<tr><td>2</td><td><img src = "public/images/system_2_1.jpeg" style = "width:75%"></img></td><td><img src = "public/images/system_2_2.jpeg" style = "width:75%"></img></td><td>\(Y(s)=G(s)(U_1(s)-U_2(s))\)</td>
+</tr>
+<tr><td>3</td><td><img src = "public/images/system_3_1.jpeg" style = "width:75%"></img></td><td><img src = "public/images/system_3_2.jpeg" style = "width:75%"></img></td><td>\(Y(s)=G(s)U(s)\)</td>
+</tr>
+<tr><td>4</td><td><img src = "public/images/system_4_1.jpeg" style = "width:75%"></img></td><td><img src = "public/images/system_4_2.jpeg" style = "width:75%"></img></td><td>\(Y(s)=G(s)U(s)\)</td>
+</tr>
+<tr><td>5</td><td><img src = "public/images/system_5_1.jpeg" style = "width:75%"></img></td><td><img src = "public/images/system_5_2.jpeg" style = "width:75%"></img></td><td>\(Y(s)=(G_1(s)-G_2(s))U(s)\)</td>
+</tr>
+<tr><td>6</td><td><img src = "public/images/system_6_1.jpeg" style = "width:75%"></img></td><td><img src = "public/images/system_6_2.jpeg" style = "width:75%"></img></td><td>\(Y(s)=G_1(s)U(s) - U(s)\)</td>
+</tr>
+<tr><td>7</td><td><img src = "public/images/system_7_1.jpeg" style = "width:75%"></img></td><td><img src = "public/images/system_7_2.jpeg" style = "width:75%"></img></td><td>\(Y(s) = \displaystyle\frac{G(s)U(s)}{1+G(s)H(s)}\)</td>
+</tr>
+<tr><td>8</td><td><img src = "public/images/system_8_1.jpeg" style = "width:75%"></img></td><td><img src = "public/images/system_8_2.jpeg" style = "width:75%"></img></td><td>\(Y(s) = \displaystyle\frac{G_1(s)U(s)}{1+G(s)}\)</td>
+</tr>
+<tr><td>9</td><td><img src = "public/images/system_9_1.jpeg" style = "width:75%" ></img></td><td><img src = "public/images/system_9_2.jpeg" style = "width:75%"></img></td><td>\(Y(s)=U_1(s)-U_2(s)-U_3(s)\)</td>
+</tr>
+<tr><td>10</td><td><img src = "public/images/system_10_1.jpeg" style = "width:75%"></img></td><td><img src = "public/images/system_10_2.jpeg" style = "width:75%"></img></td><td>\(Y(s)=U_1(s)-U_2(s)+U_3(s)\)</td>
+</tr>
+<tr><td>11</td><td><img src = "public/images/system_11_1.jpeg" style = "width:75%"></img></td><td><img src = "public/images/system_11_2.jpeg" style = "width:75%"></img></td><td>\(Y(s)=U_1(s)-U_2(s)\)</td>
+</tr>
+<tr><td>12</td><td><img src = "public/images/system_12_1.jpeg" style = "width:75%"></img></td><td><img src = "public/images/system_12_2.jpeg" style = "width:75%"></img></td><td>\(Y(s)=U_1(s)-U_2(s)\)</td>
+</tr>
+</table>
+        
+
+	block diagram reduction exersize<br>
+    <img src="public/images/block_reduce_start.png"></img>
+    step 1 <br><br><br><br>
+    <img src="public/images/block_reduce_step1.png"></img>
+    step 2 <br><br><br><br>
+    <img src="public/images/block_reduce_step2.png"></img>
+    step 3 <br><br><br><br>
+    <img src="public/images/block_reduce_step3.png"></img>    
+    Some appropriate mathematics <br><br><br>
+\(\frac{G_1 G_2  \left( \displaystyle\frac{G_3 G_ 4 + G_5}{G_4(1-G_4G_6H_1)}\right)G_4G_6} {1+G_1 G_2  \left( \displaystyle\frac{G_3 G_ 4 + G_5}{G_4(1-G_4G_6H_1)}\right)G_4G_6 H_2} \) 
+and <br><br><br>
+ \(\displaystyle\frac{G_1 G_2  \left( G_3 G_ 4 + G_5\right)G_4G_6} {G_4(1-G_4G_6H_1)+G_1 G_2  \left( G_3 G_ 4 + G_5\right)G_4G_6 H_2}  \)    
+<br>reduces to <br><br><br>
+\( \displaystyle\frac{G_1 G_2 G_6 \left( G_3 G_ 4 + G_5\right)} {1-G_4G_6H_1+G_1 G_2 G_6 H_2 \left( G_3 G_4 + G_5\right)}  \)
+	<br><br><br>
+        final <br><br><br>
+    <img src="public/images/block_reduce_final.png"></img>
+    
+   <br> block diagram algebra for example 2.23<br>
+	block diagram manipulation using superposition for multiple inputs<br>
+	relationships between tdansfer functions and state space functions<br>
+    This outlines a technique for transforming a transfer function into a state space representation<br>
+    \(\displaystyle F(s)=\frac{b_0s^m+b_1s^{m-1}+...+b_m}{s^n+a_1s^{n-1}+...+a_n}\qquad m < n \qquad (3,1) \)<br>
+    which would be the generic transfer function equation with \(m=2\) and \(n=3\).<br>
+    This equation may be transformed by inspection to the state space equations:-
+       $$
+     \mathbf {\dot x}=             \begin{pmatrix}
+     0 & 1 & 0 & \cdots & 0 &0 \\
+     0 & 0  &1  & \cdots & 0 &0 \\
+     \vdots   &\vdots  &  &   & \ddots&\vdots \\
+      0& 0 &0  & \cdots & 0&1 \\
+-a_n & -a_{n-1} &-a_{n-2}  & \cdots & -a_2&-a_1
+     \end{pmatrix}\mathbf x+     \left[ \begin{matrix}
+        0  \\
+      0  \\
+\vdots \\
+1\\
+        \end{matrix}\right] u
+$$
+
+    <br>
+    and <br>
+    $$ \mathbf y= \begin{pmatrix} b_m & b_{m-1}& \cdots & b_1 & b_0 \end{pmatrix}\mathbf x $$
+    <br>
+    This only works for transfer functions of the precise form of 3.1 with the highest order denominator coefficient equal to unity. Zero entries are made in absence of a and b terms. The rules
+    for creating a state space model by inspection also apply here. <br>
+    To transform the general state space equation:- <br>
+    \(\mathbf {\dot x}(t)=\mathbf A  \mathbf x(t)+ \mathbf B \mathbf u(t)  \)<br>
+    amd <br>
+    \(\mathbf { y}(t)=\mathbf C  \mathbf x(t)+ \mathbf D \mathbf u(t)  \)<br>
+    is achieved by taking Laplace transforms of thse functions:-<br>
+\( s \mathbf { x}(s)=\mathbf A  \mathbf x(s)+ \mathbf B \mathbf u(s) \qquad so\qquad [s\mathbf I-\mathbf A]\mathbf x(s)=\mathbf B \mathbf u(s) \)<br>
+    amd <br>
+    \(\mathbf x(s)=[s\mathbf I-\mathbf A]^{-1}\mathbf B \mathbf u(s) \qquad (3.5) \)<br>
+    and the output equation becomes <br>
+    \(\mathbf { y}(s)=\mathbf C  \mathbf x(s)+ \mathbf D \mathbf u(s)  \)<br>
+    substituting for \(\mathbf x (t)\) using (3.5)<br>
+    \(\mathbf { y}(s)=\mathbf C  ([s\mathbf I-\mathbf A]^{-1}\mathbf B \mathbf u(s))+ \mathbf D \mathbf u(s)  \\ =\{\mathbf C  [s\mathbf I-\mathbf A]^{-1}\mathbf B + \mathbf D \mathbf \} u(s) \)<br>
+    For MIMO (multi input multi output) systems this can be written in the shortened form:<br>
+    \(\mathbf y (s) = \mathbf G(s) \mathbf u(s) \)<br>
+    For SISO systems this can be written as:<br>
+    \(\displaystyle \frac{Y(s)}{U(s)} = \mathbf c [s\mathbf I-\mathbf A]^{-1}\mathbf b + d\)  <br>
+    For SISO systems \(\mathbf c\) and  \(\mathbf d\) are row and column vectors respectively, d is a scalar, so the result is a scalar.
+    
+	converting a state space model to a tdansfer function<br>
+	a system intdoducing some aspects of contdol<br>
+    <img src="public/images/antenna.png"></img><br>
+    This is a simple diagram of an antenna positioning system. The elecrtical and electronic components control the motor and gear box leading to the system rotating.<br>
+    <br>
+    Here is a simplified system block diagram for the system (assuming simple values for the system). <br><br>
+    <img src="public/images/antenna_system_01.png" ></img>
+    <br> and the system transfer function.... <br><br>
+    \(\displaystyle \frac{Y(s)}{U(s)}=\frac{5}{s(s+1)(s+2)}=\frac{5}{s^3+6s^2+5s}\)
+    <br><br>
+    The speed of the amplifier is likely to be much faster than the drive electronics, and drive electronics will be faster than the motor, so the amplified and drive electronics have been ignored.
+    The integrator (1/s) block converts the ariels speed of rotation into angular position and would be represented as a proportional voltage signal.
+    It is not possible to show how the motor torque or the load velocity will behave because they do not appear in the system. Only the load position and output voltage will appear, this is typical of frequency
+    domain methods. The eqution assumes zero initial conditions. 
+    
+	a state space model of antenna positioning system - by inspection<br>
+    The method of obtaining the state space model is known as <i>direct programming</i>. The numerator of the system is lower order, so it is in correct form. The highest coefficient of the denominator is unity. Applying the rules gives:- <br><br>
+    \(\mathbf A=\begin{pmatrix} 0&1&0\\0&0&1\\0&-5&-6\end{pmatrix} ,\qquad \mathbf b=\begin{pmatrix}0\\0\\1\end{pmatrix},\qquad \mathbf c=\begin{pmatrix}5&0&0\end{pmatrix},\qquad d=0\)
+	<br>l<br>
+    this system also has the disadvantage that any physical information about the meaning of the states is lost. 
+    <br>
+    This is a simulation diagram for the antenna positioning system ...<br><br><br>
+    <img src="public/images/antenna_sim.png"></img>
+    <br><br><br><br>
+    A general state space system is usually of the form:- <br>
+    <img src="public/images/state_space.png"></img> <br><br>
+    
+    " " " preserving the states<br> The physically meaningful state vector <br>
+\(\mathbf A=\begin{pmatrix}x_1\\x_2\\x_3 \end{pmatrix}= \begin{pmatrix}angular\ position\ (rad)\\ velocity\ (rad\ s^{-1}) \\ torque (N\ m) \end{pmatrix} \)
+<br>
+This method is more complex. The LTF block can be written as \(Y(s)=G(s)U(s)\) . <br>
+The integrator which converts load angular velocity to position is written as<br>
+\(X_1(s)=\displaystyle\frac{1}{s}X_2(s)\)<br>
+therefore \(sX_1(s)=X_2(s)\). This is equivalent to the time domain operation of differentiation with zero initial conditions. 
+\(\displaystyle \frac{dx_1(t)}{dt}=x_2(t) \qquad or\ \dot x_1=x_2\) <br>
+For the block representing load dynamics <br>
+\(X_2(s)=\displaystyle\frac{1}{1+s}X_3(s)\) <br>
+therefore \(X_2 + sX_2=X_3\) and so the inverse transform gives<br>
+\(x_2(t)+\dot x_2(t)=x_3(t) \qquad \dot x_2 = -x_2+x_3\)<br>
+for the drive system:-<br>
+\(\displaystyle \frac{5U}{5+s}\qquad so\qquad \dot x_3 = -5x_3 + 5 u \) <br>
+These are the state equations of the system <br>
+\(\begin{pmatrix}\dot x_1\\ \dot x_2\\ \dot x_3 \end{pmatrix}= \begin{pmatrix} 0&1&0\\0&-1&1\\0&0&-5\end{pmatrix}\begin{pmatrix} x_1\\x_2\\x_3\end{pmatrix}+\begin{pmatrix}0\\0\\5\end{pmatrix}u \) <br>
+and the output equation is simply \(y=x_1\) or <br>
+\(\begin{pmatrix}\dot x_1\\ \dot x_2\\ \dot x_3 \end{pmatrix}= \mathbf c\mathbf x=\begin{pmatrix} 1&0&0\end{pmatrix}\begin{pmatrix} x_1\\x_2\\x_3\end{pmatrix}\) <br>
+The quantity d does not exist in either model as there is no direct coupling from input to output. <br>
+<img src="public/images/antenna_sim2.png"></img>
+<br>
+The new state system has meaningful state variables, and swapping the positions of the variables generates 5 more possible systems. The disadvantage is that the derivation is tedious with random quantities 
+appearing in the matrices. For easier mathematical manupulation it is often convenient to represent the A matrix in diagonal form, representing a system whose state variables are non-interacting. There are two
+other important methods <b>parallel programming</b> and <b>iterative programming </b> that give other definite forms to the model. A linear Algebra technique called the <b> Similarity Transform </b> can be used
+to generate an infinite number of systems. Apart from the six set of models generated from the mathematical derivation none would have physically meaningful states.
+<br>
+ 	
+	Simple discrete-time models for digital contdol and simulation<br>
+	All the models so far have been continuous functions of time. Many control algorithms use samples as the of continuous data taken at discrete instants (time between samples is required for DSP and sending the
+    signals to the plant). A discrete time model can be created by converting the differential equations into difference equations. <br>
+    \(\left | \displaystyle \frac{dy}{dt}\right |_k\approx \frac{\Delta y}{\Delta t}=\frac{y_k-y_{k-1}}{h} \)
+    <br>Lack of information between samples is not a problem if the sampling rate is high enough. <br>
+    A difference equation model is usually of the form <br>
+    \(y_n=A_1y_{n-1}+A_2y_{n-2} +A_3y_{n-3}+\cdots B_0u_n + B_1 u_{n-1} + B_2u_{n-2} + \cdots \)<br>
+    This type of model is known as an ARMA model (Auto-Regressive Moving Average) because the coefficients A give a dependance on the previous inputs (the auto-regressive part) and the coefficients B give a dependence on the present and past inputs (moving average part - in fact a weighted average).  
+    
+	discrete time state-space models<br>
+    State space models can also be represented as discrete time systems. The discrete-time state space model is a recursive model - the state vector at any sampling instant (k+1) depends only on the input vector
+    and state vector at the previous instant k. The general form is:<br>
+    
+    \(\mathbf x_{k+1} = \mathbf \Phi \mathbf x_k + \mathbf \Delta \mathbf u_k\) <br>
+    \(\mathbf y_{k+1} = \mathbf C \mathbf x_{k+1} + \mathbf D \mathbf u_{k+1}\)<br>
+   
+	concluding remarks<br>
+    
+    
+<div id ="footer" ><h3>Footer</h3></div>
+</body>
+</html>

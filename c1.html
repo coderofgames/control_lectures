@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html>
+    <head>   
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!--<?php /*$arr=explode("\\",realpath(dirname(__FILE__))); echo $arr[count($arr)-1];*/ ?>-->
+       
+        <script src="public/js/jquery-1.11.0.min.js"></script>
+
+
+<script src="public/js/math.min.js"></script>
+
+<script src="public/js/plugins.js"></script>
+<script src="public/js/d3.js"></script>
+        
+<link rel="stylesheet" href="public/css/w3.css">
+<link rel="stylesheet" href="public/css/font-awesome.min.css">
+<link rel="stylesheet" href="public/css/w3-theme-black.css">
+<script src="public/js/function-plot.js"></script>
+
+<link rel="stylesheet" href="public/css/default.css" >
+
+
+
+  
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>     
+
+	<script type="text/javascript" src="public/js/custom.js"></script>
+	<?php
+		if (isset($this->js)) 
+		{
+			foreach ($this->js as $js)
+			{
+				echo '<script type="text/javascript" src="views/'.$js.'"></script>';
+			}
+		}
+	?>            
+    </head>
+    
+    <body>
+        
+ <nav class="w3-sidenav w3-white w3-card-2 w3-animate-left" style="display:none;z-index:2">
+  <a href="javascript:void(0)" 
+  onclick="w3_close()"
+  class="w3-closenav w3-xxxlarge w3-text-teal">Close &times;</a>
+  <a href="index">index 1</a>		
+  <a href="math">math 2</a>		
+  <a href="help/">help 3</a>		
+  <a href="contact">contact 4</a>		
+  <a href="login">login 5</a>		
+</nav>
+
+<!-- Topnav -->
+<div class="w3-topnav w3-center w3-theme w3-card-4 w3-top">
+  <a href="index">index 1</a>		
+  <a href="math">math 2</a>		
+  <a href="help/">help 3</a>		
+  <a href="contact">contact 4</a>	
+  <?php 
+            //require 'libs/Session.php';
+            Session::init();
+            $text = "";
+            $loggedIn = Session::get('loggedIn');
+            if( $loggedIn == false ){ ?>
+        
+  
+  
+    <a href="login">login</a>	
+        
+            <?php }else{ ?>
+            
+           <a href="login">login</a>	
+
+    <a href="login/logout">logout</a>	
+          
+        
+            <?php } ?>                
+  
+</div>
+
+<header class="w3-container w3-theme w3-padding" id="myHeader">
+  <i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-opennav"></i> 
+  <div class="w3-center">
+  <h5>A readable</h5>
+  <h1 class="w3-animate-bottom">SCIENCE NOTEBOOK</h1>
+  <h5>INSPIRED BY SCIENCE<br><br></h5>
+    <div class="w3-padding-32">
+      <a href="#id01" class="w3-btn w3-xxlarge w3-theme-dark" style="font-weight:900;"> MATHEMATICS, PHYSICS AND SYSTEMS  </a>
+    </div>
+  </div>
+</header>
+
+
+            
+
+            
+
+            
+        
+            <!--
+            -->
+        
+        <div class="w3-container" id="content">
+
+      <div>      <span id="description-sample"></span></div>
+      
+      </div> <!-- content -->
+}$$
+Notes from The Art of Control Engineering
+(Dutton, Thompson, Barraclough)
+
+<style id="css">
+
+
+.node rect {
+  stroke: #333;
+  fill: #fff;
+}
+
+.edgePath path {
+  stroke: #333;
+  fill: #333;
+  stroke-width: 1.5px;
+}
+</style>
+
+
+
+
+        
+<div id="myholder"></div>
+<script>
+ 
+</script>
+	An intdoduction to contdol system modelling<br>
+        - a specialization of mathematical modelling<br>
+        - ideally between the inputs and measured outputs the relationship should be linear.<br>
+        - and described by a low order equation - usually a linear differential equation.<br>
+        - development is based on physical laws, using idealized equivalent components<br>
+        - ideally each element has only one independant variable - time.<br>
+        - most important task - determine which assumptions can be made<br>
+            - over complex models might be impossible to solve, over simple models might bear little resemblence to the actual system.<br>
+            - assumptions should be listed<br>
+            - using physical laws, a system consisting of a lumped parameter model may be non-linear, then assumptions must be made about operating point, etc.<br>
+        - Number of variables in a system should equal the number of equations,<br> 
+        - the system should use consistent units of measurement<br>
+        - finally model validation is important, to test the validity of a model sometimes the system has to be built.<br>
+	lumped parameter models<br>
+        - entities of lumped parameter models are idealized representations of physical components, and can be masses, springs, dampers, resistors, capacitos etc, <br>
+        - The entity should have the following properties <br>
+            a) linear. <br>
+            if Input \(I_1\) causees an output \(O_1\) and input \(I_2\) causes an output \(O_2\) then \(I_1 + I_2=O_1+O_2\) (superposition principle).<br>
+            b) Stationary or time invariant.<br>
+            The parameters inside the element do not vary with time.<br>
+            c) Deterministic<br>
+            The outputs of a component of a system can be determined from knowledge of the systems inputs.<br>
+            Type I<br><br>
+            $$(through\ variable)=(constant) \times (accross\ variable)$$<br>
+            e.g. resistor \(i(t)=\frac{1}{R}v(t)\) where i(t) is the current in amperes, R the resistance, and v(t) the potential difference. The current is known as<br>
+            a "through variable" and the voltage is defined accross the resistor and is therefore an "accross" variable.<br>
+            e.g. A mechanical damper is defined by \(f(t)=Bv(t)\) where \(f(t)\) is the force, \(B\) is the damping coefficient, and \(v(t)\) is the velocity, so <br>
+            force could be thought of as a "through" variable, and velocity the "accross" variable.<br>
+ 	        Type II<br>
+            $$(through\ variable)=(constant) \times \large\int (accross\ variable) dt $$<br>
+            For the case of a spring, this can be \(f(t)=K \int v(t) dt\) where K is the spring stiffness. This is an alternative representation to F=-kx. <br>
+            Another example is the ideal inductor, where \(i(t)=\frac{1}{L}\int v(t) dt \), where L is the inductance in henrey (H)<br>
+            Type III<br>
+            $$(through\ variable)=(constant) \times \frac{d}{dt}(accross\ variable)$$<br>
+            examples include the mass \( f(t)=m\frac{dv(t)}{dt}\) where m is the mass in kilograms (KG)<br>
+            and the capacitor \(i(t)=C \frac{dv(t)}{dt}\) where C is the capacitance in Farads (F) and v(t) is the voltage.<br>
+            <br>
+            <table class="w3-table">
+    <thead class="w3-red"><tr>
+                <tr><td>component</td><td>symbol</td><td>equation</td><td>through variable</td><td>across variable</td></tr></thead>
+                <tr><td>Resistor</td><td>R</td><td>\(i(t)=\large\frac{v(t)}{R}\)</td><td>\(i(t)\)</td><td>\(v(t)\)</td></tr>
+                <tr><td>Inductor</td><td>L</td><td>\(i(t)=\large\frac{1}{L}\int v(t)dt\)</td><td>\(i(t)\)</td><td>\(v(t)\)</td></tr>
+                <tr><td>Capacitor</td><td>C</td><td>\(i(t)= C \large\frac{dv(t)}{dt}\)</td><td>\(i(t)\)</td><td>\(v(t)\)</td></tr>
+            </table>
+<br>
+            <table class="w3-table">
+    <thead class="w3-red">
+                <tr><td>component</td><td>symbol</td><td>equation</td><td>through variable</td><td>across variable</td></tr></thead>
+                <tr><td>Linear Damper</td><td>B</td><td>\(f(t)=B v(t) \)</td><td>\(f(t)\)</td><td>\(v(t)\)</td></tr>
+                <tr><td>Spring</td><td>K</td><td>\(f(t)=K \large \int v(t)dt\)</td><td>\(f(t)\)</td><td>\(v(t)\)</td></tr>
+                <tr><td>Mass</td><td>M</td><td>\(f(t)= m \large\frac{dv(t)}{dt}\)</td><td>\(f(t)\)</td><td>\(v(t)\)</td></tr>
+            </table>
+<br>
+            <table class="w3-table">
+    <thead class="w3-red">
+                <tr><td>component</td><td>symbol</td><td>equation</td><td>through variable</td><td>across variable</td></tr></thead>
+                <tr><td>Rotational Damper</td><td>B</td><td>\(T(t)=B \omega (t) \)</td><td>\(T(t)\)</td><td>\(\omega(t)\)</td></tr>
+                <tr><td>Rotational Spring</td><td>K</td><td>\(T(t)=K \large \int \omega(t)dt\)</td><td>\(T(t)\)</td><td>\(\omega(t)\)</td></tr>
+                <tr><td>Inertia</td><td>J</td><td>\(T(t)= J \large\frac{d\omega(t)}{dt}\)</td><td>\(T(t)\)</td><td>\(\omega(t)\)</td></tr>
+            </table>
+<br>
+            <table class="w3-table">
+    <thead class="w3-red">
+                <tr><td>component</td><td>symbol</td><td>equation</td><td>through variable</td><td>across variable</td></tr></thead>
+                <tr><td>Fluid Resistance</td><td>R</td><td>\(q(t)=\frac{h(t)}{R} \)</td><td>\(q(t)\)</td><td>\(h(t)\)</td></tr>
+                <tr><td>Fluid Capacity</td><td>A</td><td>\(q(t)= A \large\frac{dh(t)}{dt}\)</td><td>\(q(t)\)</td><td>\(h(t)\)</td></tr>
+            </table>
+<br>
+            <table class="w3-table">
+            <thead class="w3-red">
+                <tr><td>component</td><td>symbol</td><td>equation</td><td>through variable</td><td>across variable</td></tr> </thead>
+                <tr><td>Thermal Resistance</td><td>R</td><td>\(q(t)=\frac{\theta(t)}{R} \)</td><td>\(q(t)\)</td><td>\(\theta(t)\)</td></tr>
+                <tr><td>Thermal Capacity</td><td>C</td><td>\(q(t)= C \large\frac{d\theta(t)}{dt}\)</td><td>\(q(t)\)</td><td>\(\theta(t)\)</td></tr>
+            </table>
+            <br>
+    Automobile suspension example<br>
+	Internal combustion engine's inlet manifold<br>
+	equations of motion from lumped parameter models<br>
+		drawing circuit diagrams<br>
+	an equivalent electdical circuit for a mechanical slipping clutch<br>
+		mathematical models for electdical systems<br>
+        1) Kirchoffs current law states that currents flowing into a node sum to zero. This provides the continuity equations and applies to through variables in general.<br>
+        2) Kirchoffs voltage law states that the voltages around a closed path sum to zero provides compatibility equations which apply to cross variables.<br>
+	An electdical lead compensator<br>
+		mathematical models for mechanical systems<br>
+        for a rotational system, Newton's 2nd law becomes "the sum of the moments equals the moment of inertia times the angular acceleration".<br>
+		mechanical series laws<br>
+        From Newton's third law "to every action there is an equal and opposite reaction" the force acting on each element equals the total force applied to the system.<br>
+        The total displacement of the series system is equal to the sum of displacements of the individual displacements accross each element.<br>
+        mechanical parallel laws<br>
+        The sum of the forces acting on the various elements equals the total force applied to the parallel system.<br>
+        the displacement of the parallel system is equal to the displacement of each element.<br>
+	Mathematical model of an accelerometer<br>
+	Modelling rotational system with 2 inertias<br>
+	Modelling a mechanical lag-lead compensator<br>
+		mathematical models for fluid and thermal systems<br>
+        Applying the fundamental laws of fluid and thermal physics.<br>
+	Modelling a two tank hydraulic system<br>
+		thermal systems<br>
+	modelling a simple thermal systems<br>
+	Linearization<br>
+        Any system that has a non-linear system element is said to be non-linear. <br>
+        There is an advantage to modelling with linear equations, and linear equations should be used when possible.<br>
+        Procedure for linearization<br>
+        1) Choice of steady state input values together with steady state output values representative of the normal operating condition of the system (operating point).<br>
+        2) The non-linear functions that represent the system are expanded using a Taylor series expansion around the operating point. <br>
+        3) The fundamental assumption is that the linearized model is only going to be used in the vicinity of the operating point, meaning all deviations from the operating point should be small.<br>
+        4) The higher order terms (higher than first order) of the Taylor series are neglected because of small deviations and an approximate linear equation is obtained.<br>
+        For example:<br>
+        A model \(f=f(x,\ y)\) has process variables \(x \) and \(y \) and operating point \((x_0,\ y_0)\) then:-<br>
+        $$f(x,\ y) = f(x_0,\ y_0)+\displaystyle\left[\frac{\partial f}{\partial x}\right]_{x_0,\ y_0}(x-x_0)+\left[\frac{\partial^2 f}{\partial x^2}\right]_{x_0,\ y_0} \frac{(x-x_0)^2}{2!}+\left[\frac{\partial^3 f}{\partial x^3}\right]_{x_0,\ y_0} \frac{(x-x_0)^3}{3!}+...+\left[\frac{\partial f}{\partial y}\right]_{x_0,\ y_0}(y-y_0)+\left[\frac{\partial^2 f}{\partial y^2}\right]_{x_0,\ y_0} \frac{(y-y_0)^2}{2!}+\left[\frac{\partial^3 f}{\partial y^3}\right]_{x_0,\ y_0} \frac{(y-y_0)^3}{3!}+...   $$
+   <br> and neglecting terms higher than first order gives:-<br>
+    $$ f(x,\ y) = f(x_0,\ y_0)+\displaystyle\left[\frac{\partial f}{\partial x}\right]_{x_0,\ y_0}(x-x_0) +\left[\frac{\partial f}{\partial y}\right]_{x_0,\ y_0}(y-y_0)  $$
+<br><br>
+    this can be rewritten as ...<br>
+ $$ | f(x,\ y) -f(x_0,\ y_0) | \approx \displaystyle\left[\frac{\partial f}{\partial x}\right]_{x_0,\ y_0}(x-x_0) +\left[\frac{\partial f}{\partial y}\right]_{x_0,\ y_0}(y-y_0)  \quad (4) $$
+
+        <br><br>
+	Linearized model of simple pendulum<br>
+	Linearized model of fluid flow through valve<br>
+	Linearizing a product of two variables<br>
+        For the product \( f(x,\ y) = xy\) then directly from (4) ...<br><br>
+        $$ xy \approx x_0 y_0 + y_0(x-x_0) +x_0 (y-y_0) $$<br><br>
+        converting the non-linear function into a 'straight line' function in x and y.<br>
+	Lagranges equations<br>
+    These methods can help to simplify the complexity of lumped parameter models and are based on Hamilton's principle:-<br>
+    "for a dynamic system in which the work of all forces is accounted for in the Lagrangian, an admissable motion between specific configurations of the system at times<br>
+    t_1 and t_2 is a natural motion if and only if the energy of the system remains constant".<br>
+    For conservative systems, Lagrange's equations may be written as :-<br>
+    $$ \large \frac{d}{dt}\left(\frac{\partial L}{\partial \dot q_i}\right) -\frac{\partial L}{\partial q_i}=0 $$<br>
+    where \(L=T-V\) is the Lagrangian of the system (T and V are the Kinetic and Potential energies of the system).<br>
+    \(q_i\) are the generalized coordinates.<br>
+    For more general systems (ones including power dissipation)<br>
+   $$ \displaystyle \frac{d}{dt}\left(\frac{\partial L}{\partial \dot q_i}\right) -\frac{\partial L}{\partial q_i}+\frac{\partial P}{\partial \dot q_i}=Q_i $$<br>
+    where \(P\) = power function, describing the dissipation of energy in the system<br>
+    and \(Q\) = generalized external forces acting on the system.<br>
+    The number of degrees of freedom of a body is the number of independant quantities that must be specified if the position of the body is to be defined (uniquely). Any unique set of<br>
+    such quantities is referred to as a set of generalized coordinates for the system. e.g. position of mass in acceleromter x is a coordinate, angular displacements, loop currents or charges in current loops.<br>
+    $$i=\displaystyle\frac{dq}{dt}=\dot q$$<br>
+    $$v=\displaystyle\frac{dx}{dt}=\dot x$$<br>
+
+	Model of capacitor microphone<br>
+	Models of interconnected systems<br>
+    
+ 
+   
+	Differential equations and laplace tdansforms<br>
+A mathematical model describing small pertubations about a systems operating point usually consists of linear differential equations. Solving the equations does not alwways lead to
+    meaningful information about the modifications needed if the system responses are unsatisfactory.         
+	An intdoduction to state space models<br>
+    The order of a model will generally equal the number of energy storage mechanisms in the system. Conservative systems continue to oscillate and do not dissipate energy, for example a circuit
+    containing pure idealized parallel inductance and capacitance would only echange energy between the two components, and would therefore continue to oscillate indefinitely - since there would be 
+    zero resistance to dissapte energy.
+    The state space method works by replacing high order differential equations with a set of simultaneous first order differential equations. An Nth order system is replaced by a set of N simuultaneous equations.
+    
+	the state of a system<br>
+    This is a vector quantity and is specified by a set of variables arranged in vector form. 
+    State variables must obey the following rules:
+        1) They must be linearly independant.
+        2) They must be sufficient in number to completely specify the dynamic behavior of the system.
+        3) They may not be system inputs, or linear combinations of system inputs (since inputs are from outside).
+        
+    There are many ways of choosing state variables, some are meaninggul, others are not. The states of a system are generally noted as \( \mathbf x=[x_1,\ x_2,\ x_3,z ... x_n]^T \)  <br>
+	If the system has \( m\) inputs and \( p\) outputs then the input and output vectors \(\mathbf u \) and \(\mathbf y\) are the column vectors \( \mathbf u=[u_1,\ u_2,\ u_3,z ... u_m]^T \) and 
+    $$ \mathbf y=[y_1,\ y_2,\ y_3,\ ... y_p]^T $$ respectively. The state space equations are :-<br>
+    $$ \mathbf{\dot x} = \mathbf{ A x} + \mathbf {B u} $$         (2.1) <br> 
+    $$ \mathbf{ y} = \mathbf{ C x} + \mathbf {D u} $$             (2.2) <br>
+    These equations express any delay free, linear system of any order. Equation (2.1) is the <i>state equation</i> and (2.2) is the <i>output equation</i>. The vector \( \mathbf{\dot x} \) s the time
+    derivative of \( \mathbf x \) and contains the derivative of each state. <br>
+    \(\mathbf x\) = the \(n\times 1\) state vector for an nth order system.
+    \( \mathbf u \) = \(m\times 1\) input vector for a system with \(m\) inputs.
+    \( \mathbf y\) = the \(p\times 1\) output vector for a system with \(p\) outputs.
+    \(\mathbf A\) = the \(n\times n\) system matrix for an nth order system.
+    \(\mathbf B\) = the \(n\times m\) input matrix for an nth order system with \(m\) inputs
+    \(\mathbf C\)= the \(p\times n\)output matrix for an nth order system with \(p\) outputs.
+    \(\mathbf D\)= the \(p\times m\) feed forward matrix for a system with \(p\) outputs and \(m\) inputs.
+    
+    The <i>state equation</i> describes the systems dynamic behavior in response to applied inputs. The <i>output equation</i> is non-dynamic and simply maps the systems state variables and inputs
+    on to the outputs. These equations are important to time domain analysis of systems.<br> 
+    Conversion of a system differential equation to the state space representation.<br>
+    $$ \displaystyle \frac{d^3 y}{d t^3} + a_1 \frac{d^2 y}{d t^2} + a_2\frac{d y}{d t} + a_3 y=b_0 \frac{d^2 u}{d t^2} + b_1 \frac{d u}{d t} + b_2 u $$<br>
+    represents a third order system with output \(y(t) \) and input \(u(t)\)          (3.0) <br>
+    to perform the systematic conversion an intermediate variable \(z(t)\) is introduced and the system is split into two blocks<br>
+    $$ \displaystyle \frac{d^3z}{d t^3} + a_1 \frac{d^2 z}{d t^2} + a_2 \frac{d z}{d t} + a_3 z = u $$          (3.1)  <br>
+    $$\displaystyle y = b_0 \frac{d^2 z}{d t^2} + b_1 \frac{d z}{d t} + b_2 z $$        (3.2) <br>
+    These equations can also be derived using Laplace transforms, and is perhaps the easiest method.<br>
+    The state variables may be selected using the following systematic pattern ... <br>
+    $$ x_1 = z $$ <br>
+    $$ \dot x_1 = x_2 = \dot z $$              (3.3) <br>
+    $$ \dot x_2 = x_3 = \ddot z $$            (3.4) <br>
+    Differentiating x_3 and using (3.1) gives   <br>
+    $$\dot x_3 =   z''' = -a_3 x_1 - a_2 x_2 - a_1 x_3 + u $$     (3.5) <br>
+    putting this into the state equation:- <br>
+       $$\left[ \begin{matrix}
+        \dot x_1  \\
+        \dot x_2  \\
+        \dot x_3  \\
+        \end{matrix}\right]
+=       \left[ \begin{matrix}
+        0 & 1 & 0 \\
+        0 & 0 & 1 \\
+        -a_3 & -a_2 & -a_1 \\
+        \end{matrix}\right]       \left[ \begin{matrix}
+        x_1  \\
+        x_2  \\
+        x_3  \\
+        \end{matrix}\right]+       \left[ \begin{matrix}
+        0 \\
+        0 \\
+        1 \\
+        \end{matrix}\right] u
+$$ <br>
+    and the symatically equivalent output equation ... <br>
+       $$
+y=       \left[ \begin{matrix}
+        b_2 & b_1 & b_0 \\
+        
+        \end{matrix}\right]       \left[ \begin{matrix}
+        x_1  \\
+        x_2  \\
+        x_3  \\
+        \end{matrix}\right]+       \left[ \begin{matrix}
+        0 \\
+       
+        \end{matrix}\right] u
+$$ <br>
+
+    This particular realization has various names. The \(\mathbf A\) matrix is in a <i>canonical</i> form, also known as the <i>companion form</i> or the <i>controllable canonical form</i>. In this form
+    the state variables are the intermediate variable \(z\) and its derivatives. This form has some advantages, however there is actually an infinite number of possible state space models for the same system.
+    Other models can be designed by choosing different sets of states, this can produce advantages, i.e. diagonalization.
+    The  \(\mathbf A\) and  \(\mathbf C\) matrices can be created in this form by simple inspection and substitution of the system differential equation coefficients into the matrices. This is only possible if the order of the differential equation containing the output is of higher order than the input. If the orders are the same then an additional substitution must be made.<br> 
+    Rules <br>
+    1) Ensure that the differential equation of the system is of the form of equation (3.0) amd that the coefficient of the highest order output term is unity.<br> 
+    2) The required sizes of the matrices \(\mathbf A\), \(\mathbf b\) and \(\mathbf c\) (\(\mathbf d\) will always be a scalar zero in these circumstances) are found from the list.
+    \(\mathbf b\) will always be a single column vector because there is a single input. \(\mathbf c\) will always be a single row vector for a single input. \(\mathbf A\) is always square. The unspecified
+    dimension of these is always equal to the order of the system \( n\). <br>
+    3) \(\mathbf A\) always takes the form of a square matrix of zeros except for a diagonal of unity elements above the leading diagonal and a non-zero last row comprising the coefficients of the LHS output terms, written in reverse order with their signs changed. If any term is absent then a zero coefficient is inserted. For first order systems \(\mathbf a\) becomes scalar and is a single element from the last row.
+    4) \(\mathbf b\) is always a column vector of zeros except for the last element which is always unity.<br>
+    5) \(\mathbf c\) is a row vector containing the coefficients of the RHS input terms wirtten in reverse order with the signs <b>preserved</b>. Again a zero term is inserted if any term is missing.<br>
+    <br><br>
+    The main disadvantage of this representation is that the states are not physically meaningful. There is no reason why \(z(t)\) corresponds to a signal in the real world. <br>
+    
+    A state space model of an electdical lead compensator<br>
+    For an electrical lead compensator described by the equation :- <br>
+    $$ \displaystyle \frac{d v_0(t)}{dt} + \frac{R_1 + R_2}{C R_1 R_2} v_0(t) = \frac{d v_i(t)}{d t} + \frac{1}{C R_1} v_i(t)$$     (4.0)   <br>
+    To obtain the canonical state space analytically... <br>
+    $$\displaystyle\frac{d z(t)}{d t} + \frac{R_1 + R_2}{C R_1 R_2} z(t) = v_i(t) $$        (4.1)  <br>
+    $$ v_o(t)=\displaystyle\frac{d z(t)}{d t} + \frac{1}{C R_1}z(t)$$         (4.2)   <br>
+    By letting \( x_1(t) = z(t) \) and \( u(t) = v_i(t) \) then the state equation is ... <br>
+    $$ \dot x = \left[ -\frac{R_1+ R_2}{C R_1 R_2}\right] x_1 + [1] u$$ <br>
+    $$ y=\left[ -\frac{1}{C R_2}\right] x_1 + [1]u $$ <br>
+    
+    When there is a term of the original differential equation output part that is the same order as the inpt then the inspection rule has to be modified. Let \(b_{-1} \) be the coefficient of the new
+    highest order term in the input differential equation, e.g \(b+{-1}=1\). The rules for \(\mathbf A\) and \(\mathbf b\) are unchanged. \(\mathbf c\) is obtained as before, then \(b_{-1}\) times last row of \(\mathbf A\) is added to it. \(d\) will be a scalar equal in value to \(b_{-1}\). 
+    
+		An alternative model<br> 
+        setting the state variable in the last example as the voltage accross the capacitor ...
+        $$x_1=v_c(t)$$   <br>
+        $$ C \dot x_1 = i_{R_2}(t)-i_{R_1}(t)$$ <br>
+        eliminating these ...
+$$ C \dot x_1 = \displaystyle \frac{1}{R_2}v_o(t)=\frac{1}{R_1}x_1$$ <br>
+using the compatibility equation
+$$ v_o(t) = v_i(t)-v_c(t)=v_i(t)-x_1 $$<br>
+etting \(y(t)=v_o(t),\ u=v_i(t) \) and then substituting into the state equation
+$$
+\dot x_1=       \left[ \begin{matrix}
+        -\frac{R_1+R_2}{ CR_1 R_2} \\
+        
+        \end{matrix}\right] x_1+       \left[ \begin{matrix}
+       \frac{1}{C R_2} \\
+       
+        \end{matrix}\right] u
+$$<br><br>The output equation<br>
+$$y=-[1]x_1+[1]u$$ <br>
+The \(\mathbf A\) matrices are identical in this case - probably because it is a first order system. (in higher order systems it turns out to be the eigenvalues of \(\mathbf A \) which remain constant between
+different representations. The state variable is the voltage accross the capacitor and the should be measurable.  
+	Laplace transforms<br>
+    The Laplace Transform provides the mathematical foundation for frequency domain analysis of systems. The Laplace transform simplifies the mathematics by transforming the differential equation into the complex
+    frequency domain. 
+	definition<br>
+    $$\displaystyle F(s) = \int_0^{\infty}f(t) e^{-st}dt $$ <br>
+    written symbolically as:- <br>
+    $$ F(s)= \mathscr L[f(t)] $$
+    
+    (see lookup table)
+    
+	common functions<br>
+    <table class="w3-table">
+    <thead class="w3-red"><tr>
+    <td> Operation</td><td>\(f(t)\)</td><td>\(F(s)\)</td>
+    </tr></thead>
+    <tr>
+    <td>1. Transform Integral</td><td>f(t)</td><td>\(\int_0^{\infty}f(t)e^{-st}dt\) or \(\mathscr L f(t)\)</td>
+    </tr>
+    <tr>
+    <td>2. Linearty </td><td>\( f_1(t)\pm f_2(t)\)</td><td>\(F_1(s)\pm F_2(s)\)</td>
+    </tr>
+    <tr>
+    <td>3. Constant Multiplication</td><td>\(a f(t)\)</td><td>\( aF(s) \)</td>
+    </tr>
+    <tr>
+    <td>4. Complex Shift Theorem</td><td>\( e^{\pm at} f(t)\)</td><td>\(F(s\mp a)\)</td>
+    </tr>
+    <tr>
+    <td>5. Real shift theorem</td><td>\(f(t-T)\)</td><td>\(e^{-Ts}F(s)\quad (T\geq 0)\)</td>
+    </tr>
+    <tr>
+    <td>6. Scaling Theorem</td><td>\(f(\frac{t}{a})\)</td><td>\(aF(a s) \)</td>
+    </tr>
+    <tr>
+    <td>7. First Derivative</td><td>\(\displaystyle\frac{d}{dt}f(t)\)</td><td>\(sF(s)-f(0)\)</td>
+    </tr>
+    <tr>
+    <td>8. nth derivative </td><td>\(\displaystyle \frac{d^n}{d t^n}f(t) \)</td><td>\(\displaystyle s^n F(s) - \sum_{r=1}^n \frac{d^{r-1}}{dt^{r-1}}f(0) s^{n-r}\)</td>
+    </tr>
+    <tr>
+    <td>9. First Integral </td><td>\(\displaystyle \int_0^t f(t) dt \)</td><td>\(\displaystyle \frac{1}{s} \)</td>
+    </tr>
+<tr>
+    <td>10. Convolution Integral</td><td>\(\displaystyle \int_0^t f_1(\tau)f_2(t-\tau) d\tau \)</td><td>\( F_1(s)F_2(s)\)</td>
+    </tr>    
+    </table>
+	operations<br>
+    The variable \(s\) has dimensions \(\frac{1}{t}\), the dimension of frequency. <br>
+    The complex shift theorem allows calculation of functions of the form \(e^{at}f(t)\) and greatly simplifies calculation. <br>
+    The real shift theorem is useful for systems containing a <b>time delay</b>. These are sometimes referred to as <b>dead times</b> and are often encountered in chemical engineering systems.
+    
+	poles and zeros<br>
+    The pole is any point in the frequency domain representation of a system that evaluates to infinity, e.g.  \(\frac{1}{(s+1)}\) has a pole at the point \(s=-1\) <br>
+    The zeros are any point where the function evaluates to zero. <br>
+    So for poles we need to find the roots of the denominator, and for zeros the roots of the numerator.<br>
+    
+	Time Inverse laplace Transform <br>
+    \(\displaystyle f(t)=\frac{1}{2\pi j} \int_{\sigma - j\omega}^{\sigma + j\omega}F(s) e^{st}ds \)
+	partial fractions<br>
+    see math section on partial fractions
+	inverse laplace tdansform via convolution<br>
+    it is possible to solve some inverse laplace transforms using the convolution integral as an identity.
+	initial and final value theorems<br>
+    <b>initial value theorem </b> Provided the limit of \(sF(s)\) exists as \(s\to \infty\) <br>
+    \(f(0)=\lim_{t \to 0} [f(t)]=\lim_{s \to infty}[sF(s)]\) <br>
+    <b> Final value theorem </b> provided that \(F(s)\) is stable <br>
+    \( f(\infty) = \lim_{t \to \infty}[f(t)] = \lim_{s \to 0} [sF(s)] \)
+	transfer function models<br>
+    A transfer function is arrange in terms of the output \(Y(s)\) divided by the input \(U(s)\) :- <br>
+    \(\displaystyle \frac{Y(S)}{U(S)} = F(S)\) <br>
+    In real physical systems \(F(s) = \displaystyle \frac{N(s)}{D(S)}\) where \(N(s)\) is a rational polynomial of the numerator and \(D(s)\) . The order of \(D(s)\) is greater than or equal to the order of the
+    numerator. If the denominator is extracted and set equal to zero the equation is called the systems <b>characteristic equation </b> since it can be shown to characterize the systems dynamics. Its roots are the poles of the system. Both the poles and zeros can be complex values of s, and will have real and imaginary parts. Any root is of the form \(\sigma +j\omega \) <br>
+    the poles and zeros are plotted on an argand diagram with \(\sigma \) as the real axis, and this is called an <b>s-plane plot</b>. 
+    The transfer function is usually presented in factorized form <br>
+    \(\displaystyle F(s)=\frac{K(s+z_1)(s+z_2)...(s+z_m)}{s^r(s+p_1)(s+p_2)...(s+p_{n-r})}\) or <br><br>
+    \(\displaystyle F(s) =  \frac{K \large\prod_{i=1}^m(s+z_i)}{s^r \large\prod_{i=1}^{n-r}(s+p_i)} \)<br>
+	where \(m\leq n\) and \(-z_i\) and \(-p_i\) are non-zero finite zeros and poles respectively. This represents a type r system. The type number of a system is defined as the number of poles at the origin of
+    the s-plane. It is also equal to the number of open loop integrators in the system. The system is of rank \(R\) where \(R=m-n\) the difference between number of poles and zeros. This is also equal to the number of zeros at infinity and must not be confused with the rank of a matrix. The type number indicates a stable closed loop systems steady state response to various forcing inputs. Rank is important in producing Bode and Nyquist plots.<br>
+    Bode form of a transfer function <br>
+    \(\displaystyle F(s) =  \frac{K_B \large\prod_{i=1}^m(1+\frac{s}{z_i})}{s^r \large\prod_{i=1}^{n-r}(1+\frac{s}{p_i})} \)<br>
+    where \(K_B\) is called the bode gain. For multi input and output systems a transfer function matrix can be used.
+           $$
+     \left[ \begin{matrix}
+        Y_1(s)  \\
+      Y_2(s)  \\
+\vdots \\
+Y_p(s)\\
+        \end{matrix}\right]=             \begin{pmatrix}
+     F_{11}(s) & F_{12}(s) & \cdots & \cdots & F_{1m}(s) \\
+     F_{21}(s) & \ddots  &  &  & \vdots \\
+     \vdots  &  & F_{ij}(s) &  & \vdots \\
+      &  &  & \ddots &  \\
+F_{p1}(s) & \cdots &\cdots  & \cdots & F_{pm}(s)
+     \end{pmatrix}     \left[ \begin{matrix}
+        U_1(s)  \\
+      U_2(s)  \\
+\vdots \\
+U_m(s)\\
+        \end{matrix}\right]
+$$
+
+where the element \(F_{ij}(s)=\displaystyle\frac{Y_i(s)}{U_j(s)}\) is a rational polynomial giving the relationship between \(Y_i(s)\) and \(U_j(s)\) 
+
+    
+<div id ="footer" ><h3>Footer</h3></div>
+</body>
+</html>
